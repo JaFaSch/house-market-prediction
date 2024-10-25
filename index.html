@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Market Prediction</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>House Market Prediction</h1>
+    <label for="region-select">Choose a region:</label>
+    <select id="region-select">
+        <!-- Options will be populated here -->
+    </select>
+    <div id="plot-container"></div>
+    <script>
+        $(document).ready(function(){
+            // Fetch column names from the backend
+            $.getJSON('/get_regions', function(data) {
+                var select = $('#region-select');
+                select.empty(); // Clear any existing options
+                $.each(data, function(index, value) {
+                    select.append($('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                });
+            });
+
+            $('#region-select').change(function(){
+                var region = $(this).val();
+                // Fetch and display plot data for the selected region
+                $('#plot-container').html('<p>Plot for ' + region + '</p>');
+            });
+        });
+    </script>
+</body>
+</html>
