@@ -16,7 +16,7 @@
     <script>
         $(document).ready(function(){
             // Fetch column names from the static JSON file
-            $.getJSON('column_names.json', function(data) {
+            $.getJSON('templates/column_names.json', function(data) {
                 var select = $('#region-select');
                 select.empty(); // Clear any existing options
                 $.each(data, function(index, value) {
